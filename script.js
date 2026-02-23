@@ -6,6 +6,7 @@ let optionsContainer = document.querySelector("#options-container");
 let nextBtn = document.querySelector("#next-button");
 let startBtn=document.querySelector("#start-button");
 let footerP=document.querySelector("footer"); //this one here is selecting a class, u can tell it cause it has nothing like a # or .
+let score=0;
 
 
 // these datas are stored in objects use in creating questions togther with its corresponding correct answers
@@ -113,6 +114,7 @@ const oldActionBtn = optionsContainer.querySelector(".action-btn");
 if (oldActionBtn) oldActionBtn.remove();
 
       if( i==currentQuestion.correctIndex){
+        score++;
         showResult(true);
 
           const nextBtn= document.createElement("button");
@@ -135,9 +137,15 @@ if (oldActionBtn) oldActionBtn.remove();
       optionsContainer.innerHTML="";
 
       const completedDiv= document.createElement("div");
-      completedDiv.textContent="Congratulations, you have completed the quiz!";
+      completedDiv.textContent="Congratulations, you have completed the quiz! Your score:";
       completedDiv.style.textAlign="center";
       questionContainer.appendChild(completedDiv);
+
+      const scoreDiv=document.createElement("div");
+      scoreDiv.classList.add("score-div");
+      scoreDiv.textContent=  ` ${score} / ${questions.length}`;
+      questionContainer.appendChild(scoreDiv);
+
 
 
     }
@@ -178,5 +186,6 @@ function showResult(isCorrect){
 }
 
 }
+
 
 
